@@ -12,23 +12,23 @@ export function Input() {
 	}
 
 	return (
-		<div className="flex flex-col gap-3">
+		<>
 			<input
-				className="text-center rounded-md text-xl text-black outline-0 p-3 w-full shadow-xl border-neutral-200 border"
+				className="text-center rounded-md text-xl text-black outline-0 p-3 shadow-xl border-neutral-200 border"
 				type="text"
 				onChange={(e) => handleInput(e.target.value)}
 				placeholder="Url"
 			/>
 			{imgs.map(img => (
-				<>{img.src === "" || img.alt === "" ? <></>
+				<div key={img.alt} className="w-full lg:w-[50vw]">{img.src === "" || img.alt === "" ? <></>
 					:
-					<div key={img.alt} className="w-full">
-						<img src={img.src.substring(0, 4) === "http" ? img.src : `https://wol.jw.org/${img.src}`} alt={img.alt} className="w-full m-3" />
+					<>
+						<img src={img.src.substring(0, 4) === "http" ? img.src : `https://wol.jw.org/${img.src}`} alt={img.alt} className="my-3" />
 						<span className="text-xl text-black ">{img.alt}</span>
-					</div>
-				}</>
+					</>
+				}</div>
 
 			))}
-		</div >
+		</>
 	);
 }
