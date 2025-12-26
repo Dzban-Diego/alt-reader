@@ -20,11 +20,15 @@ export function Input() {
 				placeholder="Url"
 			/>
 			{imgs.map(img => (
-				<div key={img.alt} className="w-full">
-					<img src={`https://wol.jw.org/${img.src}`} alt={img.alt} className="w-full m-3" />
-					<span className="text-xl text-black ">{img.alt}</span>
-				</div>
+				<>{img.src === "" || img.alt === "" ? <></>
+					:
+					<div key={img.alt} className="w-full">
+						<img src={img.src.substring(0, 4) === "http" ? img.src : `https://wol.jw.org/${img.src}`} alt={img.alt} className="w-full m-3" />
+						<span className="text-xl text-black ">{img.alt}</span>
+					</div>
+				}</>
+
 			))}
-		</div>
+		</div >
 	);
 }

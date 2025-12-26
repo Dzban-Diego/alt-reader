@@ -11,6 +11,7 @@ export async function handleGetAlt(url: string) {
 			results.push({ src: match[1], alt: match[2] });
 		}
 
+		console.log(results)
 		return results;
 	})
 }
