@@ -6,12 +6,22 @@ import Image from "next/image";
 export function Input() {
 	const [value, setValue] = useState("")
 	const [imgs, setImgs] = useState<{ src: string, alt: string }[]>([])
+	const [loading, setLoading] = useState(false)
+	const [error, setError] = useState(false)
 
 	async function handleInput(url: string) {
 		setValue(url)
 		if (url.length < 15) return
+		setError(false)
+		setLoading(true)
 
-		handleGetAlt(url).then(setImgs)
+		handleGetAlt(url).then(setImgs).then(
+			() => setLoading(false)
+		).catch(e => {
+			setLoading(false)
+			setError(true)
+			console.error(e)
+		})
 	}
 
 	async function handlePaste() {
@@ -23,7 +33,7 @@ export function Input() {
 		<>
 			<div className="relative">
 				<input
-					className="text-center rounded-md text-xl text-black outline-0 p-3 shadow-xl border-neutral-200 border w-full"
+					className={`text-center rounded-md text-xl text-black outline-0 p-3 shadow-xl ${error ? "border-red" : "border-neutral-200"} border w-full`}
 					type="text"
 					value={value}
 					onChange={(e) => handleInput(e.target.value)}
@@ -35,6 +45,12 @@ export function Input() {
 				</button>
 			</div>
 
+			{
+				loading ? <div className="flex items-center justify-center">
+					<div className="h-10 w-10 animate-spin rounded-full border-2 border-gray-300 border-t-black" />
+				</div> : <></>
+			}
+
 			{imgs.map(img => (
 				<div key={img.alt} className="w-full lg:w-[50vw]">{img.src === "" || img.alt === "" ? <></>
 					:
@@ -43,7 +59,6 @@ export function Input() {
 						<span className="text-xl text-black ">{img.alt}</span>
 					</>
 				}</div>
-
 			))}
 		</>
 	);
