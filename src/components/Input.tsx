@@ -1,6 +1,7 @@
 "use client";
 import { handleGetAlt } from "@/app/actions/getAlt";
 import { useState } from "react";
+import Image from "next/image";
 
 export function Input() {
 	const [value, setValue] = useState("")
@@ -30,7 +31,7 @@ export function Input() {
 				></input>
 
 				<button onClick={handlePaste} className="absolute right-3 top-1/2 -translate-y-1/2">
-					<img src="/paste.svg" alt="paste" className="w-6" />
+					<Image src="/paste.svg" alt="paste" width={30} height={30} />
 				</button>
 			</div>
 

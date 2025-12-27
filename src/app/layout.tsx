@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -14,10 +14,14 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-	title: "Subtitler",
-	description: "Simple app for downloanding subtitles from jw",
-	viewport: "width=device-width, initial-scale=1.0",
+	title: "Alt Reader",
+	description: "Simple app to read image alt text",
 };
+
+export const viewport: Viewport = {
+	width: "device-width",
+	initialScale: 1,
+}
 
 export default function RootLayout({
 	children,
