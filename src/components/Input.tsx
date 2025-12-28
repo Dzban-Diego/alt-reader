@@ -56,9 +56,11 @@ export function Input() {
 					placeholder="Url"
 				></input>
 
+				{/*
 				<button onClick={handlePaste} className="absolute right-3 top-1/2 -translate-y-1/2">
 					<Image src="/paste.svg" alt="paste" width={30} height={30} />
 				</button>
+				*/}
 			</div>
 
 			{
