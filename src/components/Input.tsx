@@ -68,7 +68,7 @@ export function Input() {
 			}
 
 			{imgs.map(img => (
-				<div key={img.alt} className="w-full lg:w-[50vw]">{img.src === "" || img.alt === "" ? <></>
+				<div key={img.alt + img.src} className="w-full lg:w-[50vw]">{img.src === "" || img.alt === "" ? <></>
 					:
 					<>
 						<img src={img.src.substring(0, 4) === "http" ? img.src : `https://wol.jw.org/${img.src}`} alt={img.alt} className="my-3" />
