@@ -15,6 +15,22 @@ export function Input() {
 		setError(false)
 		setLoading(true)
 
+
+		const params = new URL(url).searchParams;
+		const docid = params.get("docid");
+
+		if (docid !== null) {
+			handleGetAlt(`https://wol.jw.org/pl/wol/d/r12/lp-p/${docid}`).then(setImgs).then(
+				() => setLoading(false)
+			).catch(e => {
+				setLoading(false)
+				setError(true)
+				console.error(e)
+			})
+
+			return
+		}
+
 		handleGetAlt(url).then(setImgs).then(
 			() => setLoading(false)
 		).catch(e => {
